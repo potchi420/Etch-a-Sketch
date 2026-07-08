@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Etch-a-Sketch</h1>
+        <p class="subtitle">Draw by moving across the grid.</p>
+        <div class="controls">
+            <button id="clear" type="button">Clear</button>
+            <button id="resize" type="button">Resize</button>
+        </div>
+        <div id="sketch"></div>
+    </div>
 </body>
 </html>
