@@ -13,6 +13,7 @@ function createGrid() {
             cell.style.height = `${sketchBoard.offsetHeight / gridSize}px`;
             cell.style.border = '1px solid #000';
             cell.style.boxSizing = 'border-box';
+            cell.style.flexShrink = '0';
             cell.addEventListener('mousedown', (event) => {
                 if (event.button === 0) {
                     isDrawing = true;
