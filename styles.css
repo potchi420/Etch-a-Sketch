@@ -1,8 +1,14 @@
+body {
+    background: #EFE6D5;
+    background: linear-gradient(90deg, rgba(239, 230, 213, 1) 0%, rgba(157, 190, 183, 1) 50%);
+}
+
 #sketch{
     display: flex;
     flex-wrap: wrap;
     width: 600px;
     height: 600px;
+    border-radius: 10px;
 }
 
 .container{
@@ -11,4 +17,9 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+}
+
+h1, p{
+    text-align: center;
+    color: #e73213;
 }
