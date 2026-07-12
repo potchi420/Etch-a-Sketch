@@ -17,10 +17,12 @@ function createGrid() {
             cell.style.border = '1px solid #000';
             cell.style.boxSizing = 'border-box';
             cell.style.flexShrink = '0';
+            cell.dataset.level = '0'; 
+
             cell.addEventListener('mousedown', (event) => {
                 if (event.button === 0) {
                     isDrawing = true;
-                    cell.style.backgroundColor = 'black';
+                    darkenCell(cell);
                 }
             });
             cell.addEventListener('mouseenter', () => {
@@ -28,7 +30,7 @@ function createGrid() {
                     if (isRGBMode) {
                         cell.style.backgroundColor = getRandomColor();
                     } else {
-                        cell.style.backgroundColor = 'black';
+                        darkenCell(cell);
                     }
                 }
                 
@@ -36,6 +38,23 @@ function createGrid() {
             sketchBoard.appendChild(cell);
         }
     }
+}
+
+function darkenCell(cell) {
+    let level = parseInt(cell.dataset.level);
+    
+    if (level === 0) {
+        // first hit: lock in the color for this cell
+        cell.dataset.color = isRGBMode ? getRandomColorRGB() : '0,0,0';
+    }
+
+    if (level < 10) {
+        level++;
+        cell.dataset.level = level;
+    }
+
+    let opacity = level / 10;
+    cell.style.backgroundColor = `rgba(${cell.dataset.color}, ${opacity})`;
 }
 
 function getRandomColor() {
@@ -93,7 +112,7 @@ resizeGrid.addEventListener('click', () => {
 });
 
 rgbButton.addEventListener('click', () => {
-    isRGBMode = !isRGBMode;
+    isRGBMode = true;
 });
 
 blackButton.addEventListener('click', () => {
