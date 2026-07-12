@@ -9,11 +9,13 @@ let isDrawing = false;
 let isRGBMode = false;
 
 function createGrid() {
+    let cellSize = 100 / gridSize;
+    
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             let cell = document.createElement('div');   
-            cell.style.width = `${sketchBoard.offsetWidth / gridSize}px`;
-            cell.style.height = `${sketchBoard.offsetHeight / gridSize}px`;
+            cell.style.width = `${cellSize}%`;
+            cell.style.height = `${cellSize}%`;
             cell.style.border = '1px solid #000';
             cell.style.boxSizing = 'border-box';
             cell.style.flexShrink = '0';
@@ -22,7 +24,11 @@ function createGrid() {
             cell.addEventListener('mousedown', (event) => {
                 if (event.button === 0) {
                     isDrawing = true;
-                    darkenCell(cell);
+                    if (isRGBMode) {
+                        cell.style.backgroundColor = getRandomColor();
+                    } else {
+                        darkenCell(cell);
+                    }
                 }
             });
             cell.addEventListener('mouseenter', () => {
